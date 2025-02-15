@@ -1443,7 +1443,7 @@ class AppstoreClientTest {
                 else -> error("Unhandled ${request.url.encodedPath}")
             }
         }
-        val client = AppstoreClient("https://appstore-api.rebble.io/api", "x", mockEngine)
+        val client = AppstoreClient("https://appstore-api.rebble.io/api", "x") // TODO fix
         val locker = client.getLocker()
         assertEquals(13, locker.size)
     }

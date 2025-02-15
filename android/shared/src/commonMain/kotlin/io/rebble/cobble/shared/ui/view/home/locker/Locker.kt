@@ -16,6 +16,8 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import io.rebble.cobble.shared.database.dao.LockerDao
 import io.rebble.cobble.shared.ui.nav.Routes
 import io.rebble.cobble.shared.ui.viewmodel.LockerViewModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.IO
 import org.koin.compose.getKoin
 
 enum class LockerTabs(val label: String, val navRoute: String) {
@@ -24,7 +26,7 @@ enum class LockerTabs(val label: String, val navRoute: String) {
 }
 
 @Composable
-fun Locker(searchingState: MutableState<Boolean>, page: LockerTabs, lockerDao: LockerDao = getKoin().get(), viewModel: LockerViewModel = viewModel { LockerViewModel(lockerDao) }, onTabChanged: (LockerTabs) -> Unit) {
+fun Locker(searchingState: MutableState<Boolean>, page: LockerTabs, lockerDao: LockerDao = getKoin().get(), viewModel: LockerViewModel = viewModel { LockerViewModel(lockerDao, Dispatchers.IO) }, onTabChanged: (LockerTabs) -> Unit) {
     val entriesState: LockerViewModel.LockerEntriesState by viewModel.entriesState.collectAsState()
     val modalSheetState by viewModel.modalSheetState.collectAsState()
     val watchIsConnected by viewModel.watchIsConnected.collectAsState()

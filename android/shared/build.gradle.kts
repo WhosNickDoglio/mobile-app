@@ -86,6 +86,10 @@ kotlin {
         commonTest.dependencies {
             implementation(kotlin("test"))
             implementation(libs.ktor.client.mock)
+            implementation(libs.assertk)
+            implementation(libs.kotlinx.coroutines.test)
+            implementation(libs.turbine)
+            implementation(libs.koin.test)
         }
     }
     room {
